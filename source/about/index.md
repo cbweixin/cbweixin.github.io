@@ -16,12 +16,10 @@
 Target for **Availability**, **Scalability**, **Resilency**, and **Performance** of [QBO](https://quickbook.intuit.com)
 
 **Active-Active**
-
 1.dispatcher services for dynamic routing, load shedding, strengthen scalability
 2.QBO migration to AWS from intuit datacenter
 
 **High avability**
-
 1.implement bash for monitoring QBO server and automation test
 2.release verification, performance monitoring and analysis under a high concurrency and multithreading environment
 3.integrate netflix hystrix to short circuit failed micro-service to improve resiliency
@@ -34,7 +32,6 @@ Target for **Availability**, **Scalability**, **Resilency**, and **Performance**
 #### Attendee - Apri 2014 - Jan 2015
 
 **v3 webservices and nextgen webservices**
-
 1.implement rest api for qbo linked transaction service
 2.implement rest api for manual update bank transaction service
 3.performance profile and code instrument for bottneck diagnosis and performance improvement,
@@ -43,7 +40,6 @@ various bug fixing, unit testing
 **tech stack**:spring DI, jax-rs, jersey, rest-easy, jackson, spring boot, spring aop, jmockit, jenkins, sonarcube
 
 **nearline recommenation engine**
-
 real-time recommendation
 1.storm topology design 
 2.drools rule engine design
@@ -78,7 +74,6 @@ which ran on an tablet or phone. Improved functionality and efficiency.
 5. [BIRT Mobile for Android](https://play.google.com/store/apps/details?id=com.actuate.birt)
 
 **Acutate Dashboard Framework**
-
 1.Designed, Constructed, and Implemented framework for this project which allowed for users
 to be able to access and incorporate into a single page numerous visualization gadgets such
 as: tables, charts, crosstabs, and flash content. Improved quality of services offered.
@@ -89,7 +84,6 @@ data and render content.
 4.[link](http://www.slideshare.net/birtyguy/birt-360-dashboards)
 
 **Actuate JavaScript Application Program Interface, (API), Framework**
-
 1.Designed, Constructed, and Executed framework for this project which supported the
 dynamically loading client resources, leading to customers being able to tailor various visual
 components and to integrate those components into ad hoc environments, as well as to
@@ -98,7 +92,6 @@ with clients.
 
 
 **An Ajax Based Interactive Viewing Framework**
-
 1.Designed, prototyped, and implemented the framework for this project which allowed user
 exploiting reports and individual visual components inside report.
 2.The framework consisted of a JavaScript runtime in browser client and a Java based middle
