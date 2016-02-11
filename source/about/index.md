@@ -37,7 +37,7 @@ Target for **Availability**, **Scalability**, **Resilency**, and **Performance**
 3. performance profile and code instrument for bottneck diagnosis and performance improvement,
 various bug fixing, unit testing
 
-**tech stack**:spring DI, jax-rs, jersey, rest-easy, jackson, spring boot, spring aop, jmockit, jenkins, sonarcube
+**tech stack**: spring DI, jax-rs, jersey, rest-easy, jackson, spring boot, spring aop, jmockit, jenkins, sonarcube
 
 **nearline recommenation engine**
 real-time recommendation
@@ -49,7 +49,8 @@ real-time recommendation
 **elastic search**
 1. qbo search ui
 2. java integration with elastic search, such as manage mappings, manage documents and parse the query string from ui.
-tech stack : 
+
+**tech stack**: 
 * backend 
 restful api,elastic search,jersey,jackson,spring DI,jax-rs,jersey,rest-easy,spring boot,spring aop,jmockit,jenkins,sonarcube
 * front end
@@ -102,10 +103,10 @@ requests, updated report design schema, and loaded report engine to generated re
 
 ## Personal Project
 1.[algorithm practice](https://github.com/cbweixin/webviewer/algorithm-practice)
-1.[compiler](https://github.com/cbweixin/compiler)
-1.[functional programming](https://github.com/cbweixin/functional_programming)
-2.[littler airwar](https://github.com/cbweixin/little-airwar)
-3.[webviewer remote debug console](https://github.com/cbweixin/webviewer-remote-console)
+2.[compiler](https://github.com/cbweixin/compiler)
+3.[functional programming](https://github.com/cbweixin/functional_programming)
+4.[littler airwar](https://github.com/cbweixin/little-airwar)
+5.[webviewer remote debug console](https://github.com/cbweixin/webviewer-remote-console)
 
 ## Proficiency
 Java,J2EE,spring core,spring boot,AWS,cloudformation,cloudwatch,EC2,Route53,Aspect J,hystrix,storm,activeMQ,zookeeper,redis,mysql,jenkins pipeline,jenkins dsl,groovy,chef,nginx,JavaScript,C/C++,Objective C,Python,Shell,ios,android,node.js,Tomcat,jboss, webloigc, websphere, jetty,AJAX,CSS,REST, SOAP, XML, JSON,Sencha,jQuery
