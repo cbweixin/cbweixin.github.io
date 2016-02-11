@@ -16,13 +16,13 @@
 Target for **Availability**, **Scalability**, **Resilency**, and **Performance** of [QBO](https://quickbook.intuit.com)
 
 **Active-Active**
-1.dispatcher services for dynamic routing, load shedding, strengthen scalability
-2.QBO migration to AWS from intuit datacenter
+1. dispatcher services for dynamic routing, load shedding, strengthen scalability
+2. QBO migration to AWS from intuit datacenter
 
 **High avability**
-1.implement bash for monitoring QBO server and automation test
-2.release verification, performance monitoring and analysis under a high concurrency and multithreading environment
-3.integrate netflix hystrix to short circuit failed micro-service to improve resiliency
+1. implement bash for monitoring QBO server and automation test
+2. release verification, performance monitoring and analysis under a high concurrency and multithreading environment
+3. integrate netflix hystrix to short circuit failed micro-service to improve resiliency
 
 **tech stack**: spring, mybatis, mysql, chef,aws cli, cloudformation, cloudwatch,RDS, EC2, S3, Route 53, VPC,  splunk, new relic, dynatrace, youkit, keynote, hystrix, Jenkins
 
@@ -32,23 +32,23 @@ Target for **Availability**, **Scalability**, **Resilency**, and **Performance**
 #### Attendee - Apri 2014 - Jan 2015
 
 **v3 webservices and nextgen webservices**
-1.implement rest api for qbo linked transaction service
-2.implement rest api for manual update bank transaction service
-3.performance profile and code instrument for bottneck diagnosis and performance improvement,
+1. implement rest api for qbo linked transaction service
+2. implement rest api for manual update bank transaction service
+3. performance profile and code instrument for bottneck diagnosis and performance improvement,
 various bug fixing, unit testing
 
 **tech stack**:spring DI, jax-rs, jersey, rest-easy, jackson, spring boot, spring aop, jmockit, jenkins, sonarcube
 
 **nearline recommenation engine**
 real-time recommendation
-1.storm topology design 
-2.drools rule engine design
+1. storm topology design 
+2. drools rule engine design
 
 **tech stack**: acitvemq, zookeeper, storm, drools, spring core, redis, mybatis, saltstack
 
 **elastic search**
-1.qbo search ui
-2.java integration with elastic search, such as manage mappings, manage documents and parse the query string from ui.
+1. qbo search ui
+2. java integration with elastic search, such as manage mappings, manage documents and parse the query string from ui.
 tech stack : 
 * backend 
 restful api,elastic search,jersey,jackson,spring DI,jax-rs,jersey,rest-easy,spring boot,spring aop,jmockit,jenkins,sonarcube
@@ -64,6 +64,7 @@ Lead Teams through complex framework projects of significant importance to the e
 company services. These projects involve designing, building, implementing, and prototyping.
 
 **Actuate Mobile Viewing Framework**
+
 1. Conceived, Built, and Executed framework for this project in order to expose Business
 Intelligence and Reporting Tools, (BIRT), and report viewing features in a mobile environment
 which resulted in successfully exposing BIRT to mobile users.
@@ -74,17 +75,17 @@ which ran on an tablet or phone. Improved functionality and efficiency.
 5. [BIRT Mobile for Android](https://play.google.com/store/apps/details?id=com.actuate.birt)
 
 **Acutate Dashboard Framework**
-1.Designed, Constructed, and Implemented framework for this project which allowed for users
+1. Designed, Constructed, and Implemented framework for this project which allowed for users
 to be able to access and incorporate into a single page numerous visualization gadgets such
 as: tables, charts, crosstabs, and flash content. Improved quality of services offered.
-2.Created and built publish-subscription structure among gadgets that supported data interoperation. Improved system functionality.
-3.The framework consists of a JavaScript runtime in browser client and a Java based middle
+2. Created and built publish-subscription structure among gadgets that supported data interoperation. Improved system functionality.
+3. The framework consists of a JavaScript runtime in browser client and a Java based middle
 tier in server side retrieving the data, handling the synchronization of requests that update
 data and render content.
-4.[link](http://www.slideshare.net/birtyguy/birt-360-dashboards)
+4. [link](http://www.slideshare.net/birtyguy/birt-360-dashboards)
 
 **Actuate JavaScript Application Program Interface, (API), Framework**
-1.Designed, Constructed, and Executed framework for this project which supported the
+1. Designed, Constructed, and Executed framework for this project which supported the
 dynamically loading client resources, leading to customers being able to tailor various visual
 components and to integrate those components into ad hoc environments, as well as to
 access them in single or cross domain mode. Improved functionality of system and relations
@@ -92,12 +93,12 @@ with clients.
 
 
 **An Ajax Based Interactive Viewing Framework**
-1.Designed, prototyped, and implemented the framework for this project which allowed user
+1. Designed, prototyped, and implemented the framework for this project which allowed user
 exploiting reports and individual visual components inside report.
-2.The framework consisted of a JavaScript runtime in browser client and a Java based middle
+2. The framework consisted of a JavaScript runtime in browser client and a Java based middle
 tier in server side which handled the incoming Simple Object Access Protocol (SOAP)
 requests, updated report design schema, and loaded report engine to generated report pages.
-3.[link](http://www.slideshare.net/birtyguy/actuate-birt-interactive-viewer)
+3. [link](http://www.slideshare.net/birtyguy/actuate-birt-interactive-viewer)
 
 ## Personal Project
 1.[algorithm practice](https://github.com/cbweixin/webviewer/algorithm-practice)
