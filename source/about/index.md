@@ -5,7 +5,7 @@
 
 ## Summary
 
-9 years progressive experience in software industry. For the recent 2 years I'm a backend engineer for site infrastructure and reliability. But before that I was a full-stack engineer for more than 6 years. 
+9 years progressive experience in software industry. Currently working as backend engineer for site infrastructure and platform webservices. Used to be a full-stack engineer for more than 6 years. 
 
 ## Experience
 
@@ -13,11 +13,14 @@
 #### Senior Software Engineer
 #### Attendee - Jan 2015 - present
 
-Target for **Availability**, **Scalability**, **Resilency**, and **Performance** of [QBO](https://quickbook.intuit.com)
+Target for **Availability**, **Scalability**, **Resilency**, and **Performance** of [quickbook](https://quickbook.intuit.com)
+
+**Voyager**
+1.quickbook email migration from intuit smtp to sendgrid
 
 **Active-Active**
 1. dispatcher services for dynamic routing, load shedding, strengthen scalability
-2. QBO migration to AWS from intuit datacenter
+2. quickbook migration to AWS from intuit data center
 
 **High avability**
 1. implement bash for monitoring QBO server and automation test
