@@ -2,6 +2,7 @@
 
  * <cbweixin@gmail.com>
  * <http://jsdom.wordpress.com>
+ * <https://www.linkedin.com/in/weixin>
 
 ## Summary
 
