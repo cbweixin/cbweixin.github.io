@@ -6,7 +6,7 @@
 
 ## Summary
 
-9 years progressive experience in software industry. Currently working as backend engineer for site infrastructure and platform webservices. Used to be a full-stack engineer for more than 6 years. 
+10 years progressive experience in software industry. Currently working as backend engineer for site infrastructure and platform webservices. Used to be a full-stack engineer for more than 6 years. 
 
 ## Experience
 
@@ -16,11 +16,28 @@
 
 Target for **Availability**, **Scalability**, **Resilency**, and **Performance** of [quickbook](https://quickbook.intuit.com)
 
-**Voyager**
-1.quickbook email migration from intuit smtp to sendgrid
+**Voyager** move QBO to AWS
+- dispatcher services, serves 200k QPS now
+	- implement web servic for traffic routing, algorithm for traffic shaping and load shedding 
+	- implement client sdk for downstream dependencies to consume this service
+	- implement far-near cache by using coherence
+	- implement authentication/verification by following intuit secrurity protocol
+	- write stack creation, auto sccaling,health and alert rules by using AWS api, cloudformation and chef script 
+- email service, serves 1000k QPS/hour now
+    + rewrite intuit email service by using sendgrid api instead of intuit smtp
+    + integration with hystrix to increase resiliency, reduce latency and improve fault tolerance 
+    + implement authentication/verification by following intuit security protocol
+- background cron job processing 
+    - implement network audit agent to instrument network access, find vulerabilities
+    - implement application encryption/decryption
+    - implemenet authentication/verification by following intuit security protocol
+
+- decommission internanl url
+    + implement network audit agent to instrument network access, find internal url call
+    + implement public url generaton
+    + implement authentication/verification by following intuit security protocol
 
 **Active-Active**
-1. dispatcher services for dynamic routing, load shedding, strengthen scalability
 2. quickbook migration to AWS from intuit data center
 
 **High avability**
