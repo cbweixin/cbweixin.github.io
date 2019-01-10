@@ -129,10 +129,108 @@ result
 
   private def productOfUnicode2(str: String): Long =
     str.foldLeft(1L)(_ * _.toInt)
+
+	private def productOfUnicode3(str: String): Long = str.map(_.toLong).product
 ```
 
 
-## ex 7
+## ex 9
+```scala
+
+  /**
+    * Ex 9
+    * Make the function of the preceding exercise a recursive function.
+    *
+    * @param str
+    * @param idx
+    * @return
+    */
+  private def productRecursive(str: String, idx: Int): Long = {
+    if (idx == -1) 1
+    else str.charAt(idx).toLong * productRecursive(str, idx - 1)
+  }
+
+  private def productRecursive2(str: String): Long = {
+    if (str.isEmpty) 1 else str.head.toLong * productRecursive2(str.tail)
+  }
+```
+
+
+## ex 10
+
+```scala
+ /**
+    *
+    * Write a function that computes xn, where n is an integer. Use the following recursive definition:
+    * • xn = y · y if n is even and positive, where y = xn / 2.
+    * • xn = x · xn – 1 if n is odd and positive. • x0 = 1.
+    * • xn = 1 / x–n if n is negative.
+    *
+    * @param x
+    * @param n
+    * @return
+    */
+  private def getPow(x: Int, n: Int): Double = {
+    val sign = if (n >= 0) 1 else -1
+    val m = Math.abs(n)
+    val t =
+      if (m == 0) 1L
+      else if (m % 2 == 0) {
+        val y = getPow(x, m / 2)
+        y * y
+      } else x * getPow(x, m - 1)
+    if (sign == 1) t else 1L / t
+  }
+
+  private def getPow2(x: Int, n: Int): Double = {
+    if (n == 0) 1
+    else if (n < 0) 1 / getPow(x, -n)
+    else {
+      if (n % 2 == 0) {
+        val y = getPow(x, n / 2)
+        y * y
+      } else x * getPow(x, n - 1)
+    }
+  }
+
+```
+
+## ex 11
+```scala
+
+  /**
+    * Define a string interpolator date so that you can define a java.time.LocalDate as date"$year-$month-$day". You
+    * need to define an “implicit” class with a date method, like this:
+    * implicit class DateInterpolator(val sc: StringContext) extends AnyVal { def date(args: Any*): LocalDate = . . .
+    * }
+    * args(i) is the value of the ith expression. Convert each to a string and then to an integer, and pass them to
+    * the LocalDate.of method. If you already know some Scala, add error handling. Throw an exception if there aren’t
+    * three arguments, or if they aren’t integers, or if they aren’t separated by dashes. (You get the strings in
+    * between the expressions as sc.parts.)
+    *
+    * @param sc
+    */
+  implicit class DateInterpolator(val sc: StringContext) extends AnyVal {
+    def date(args: Any*): LocalDate = {
+      if (args.length != 3)
+        throw new IllegalArgumentException(
+          "argument number is wrong, have to be 3")
+      val paras = new Array[Integer](3)
+      try {
+        var i = 0
+        for (arg <- args) {
+          paras(i) = arg.toString.toInt
+        }
+      } catch {
+        case e: Exception => e.printStackTrace()
+      }
+
+      LocalDate.of(paras(0), paras(1), paras(2))
+    }
+  }
+
+}
+```
 
 
 
