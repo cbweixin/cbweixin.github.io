@@ -105,6 +105,34 @@ result
     for(i <- n to 0 by -1) println(i)
 
   }
+
+ private def rewriteForLoop2(num: Int) = {
+    for (i <- num to(0, -1)) println(i)
+  }
 ```
+
+## ex 6
+```scala
+  /**
+    * ex 6:
+    * Write a for loop for computing the product of the Unicode codes of all letters in a string. For example, the
+    * product of the characters in "Hello" is 9415087488L.
+    *
+    * @param str
+    * @return
+    */
+  private def productOfUnicode(str: String): Long = {
+    var product = 1L
+    for (i <- str) product *= i.toInt
+    product
+  }
+
+  private def productOfUnicode2(str: String): Long =
+    str.foldLeft(1L)(_ * _.toInt)
+```
+
+
+## ex 7
+
 
 
