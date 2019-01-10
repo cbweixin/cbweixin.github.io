@@ -35,7 +35,7 @@ or using pattern match
 ## ex 2
 
 ```scala
-/**
+  /**
     * ex 2 :
     * What is the value of an empty block expression {}? What is its type?
     *
@@ -58,3 +58,53 @@ the result is like this :
 ```shell
 ()
 ```
+
+
+## ex 3
+
+```scala
+  /**
+    * Task 3:
+    *
+    * Come up with one situation where the assignment `x = y = 1` is valid in Scala.
+    * (Hint: Pick a suitable type for `x`.)
+    */
+  private def task3(): Unit = {
+    var y: Int = 0
+    var x: Unit = ()
+    x = y = 1 //    var x: Int = 2
+    //    x = y = 1
+    println("ex 3")
+    println(x)
+    println(y)
+  }
+```
+
+result
+
+```shell
+()
+1
+```
+
+## ex 4
+```scala
+  /**
+    * exercise 4:
+    * Write a Scala equivalent for the Java loop
+    * for (int i = 10; i >= 0; i--) System.out.println(i);
+    *
+    */
+  private def rewriteForLoop(n: Int) = {
+    println("ex 4")
+    for (i <- Range(n, -1, -1)) println(i)
+  }
+
+  private def rewriteForLoop_2(n: Int) = {
+    println("ex 4")
+    for(i <- n to 0 by -1) println(i)
+
+  }
+```
+
+
