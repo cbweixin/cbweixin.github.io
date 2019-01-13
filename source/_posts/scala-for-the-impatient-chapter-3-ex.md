@@ -149,4 +149,85 @@ tags: scala
     a ++ b
 
   }
+
+  /**
+    * Ex 4:
+    * Given an array of integers, produce a new array that contains all positive values of the original array, in
+    * their original order, followed by all values that are zero or negative, in their original order.
+    *
+    * @param arr
+    * @return
+    */
+  private def reArrangeArray2(arr: Array[Int]): Array[Int] = {
+    arr.filter(_ > 0) ++ arr.filter(_ <= 0)
+  }
 ```
+
+## ex 5
+
+```scala
+  /**
+    * Ex 5 :
+    * How do you compute the average of an Array[Double]?
+    *
+    * @param arr
+    * @return
+    */
+  private def calcAverage(arr: Array[Double]): Double = arr.sum / arr.size
+```
+
+## ex 6
+```scala
+  /**
+    * Ex 6 :
+    * How do you rearrange the elements of an Array[Int] so that they appear in
+    * reverse sorted order? How do you do the same with an ArrayBuffer[Int]?
+    *
+    * @param arr
+    * @return
+    */
+  private def reverseSortArray(arr: Array[Int]): Array[Int] = arr.sorted(Ordering.Int.reverse)
+
+  /**
+    * Ex 6 :
+    * How do you rearrange the elements of an Array[Int] so that they appear in
+    * reverse sorted order? How do you do the same with an ArrayBuffer[Int]?
+    *
+    * @param arr
+    * @return
+    */
+  private def reverseSortArray2(arr: Array[Int]): Array[Int] = arr.sortWith(_ > _)
+
+  /**
+    *
+    * Ex 6 :
+    * reverse and sort an Arraybuf
+    *
+    * @param buf
+    * @return
+    */
+  private def reverseSortArrayBuf(buf: ArrayBuffer[Int]): ArrayBuffer[Int] = {
+    val arr = reverseSortArray(buf.toArray)
+    buf.clear()
+    arr.copyToBuffer(buf)
+    buf
+  }
+
+  private def reverseSortArrayBuf(buf: ArrayBuffer[Int]): ArrayBuffer[Int] = {
+    buf.sortWith(_ > _)
+  }
+```
+
+## ex 7
+```scala
+  /**
+    * Ex 7 :
+    * Write a code snippet that produces all values from an array with duplicates
+    * removed. (Hint: Look at Scaladoc.)
+    *
+    * @param arr
+    * @return
+    */
+  private def getDistinctArray(arr: Array[Int]): Array[Int] = arr.distinct
+```
+
