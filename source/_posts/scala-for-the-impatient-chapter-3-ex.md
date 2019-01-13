@@ -229,5 +229,51 @@ tags: scala
     * @return
     */
   private def getDistinctArray(arr: Array[Int]): Array[Int] = arr.distinct
+
+  private def getDistinctArray2(arr: Array[Int]): Array[Int] = {
+    arr.toSet.toArray
+  }
 ```
+
+## ex 8
+```scala
+
+  /**
+    * EX 8 :
+    *
+    * Suppose you are given an array buffer of integers and want to remove all but the first negative number. Here is
+    * a sequential solution that sets a flag when the first negative number is called, then removes all elements beyond.
+    *
+    * this method is wrong because it changes the postion of the original array
+    *
+    * @param arr
+    * @return
+    */
+  private def keepFirstNegative(arr: ArrayBuffer[Int]): ArrayBuffer[Int] = {
+    val neg = arr.filter(_ < 0)
+    arr.filter(_ > 0) ++ neg.dropRight(neg.size - 1)
+
+  }
+
+  /**
+    * EX 8 :
+    *
+    * Suppose you are given an array buffer of integers and want to remove all but the first negative number. Here is
+    * a sequential solution that sets a flag when the first negative number is called, then removes all elements beyond.
+    *
+    * this method is wrong because it changes the postion of the original array
+    *
+    * @param arr
+    * @return
+    */
+  private def keepFirstNegative2(arr: ArrayBuffer[Int]): ArrayBuffer[Int] = {
+    val indexes = for (i <- arr.indices if arr(i) < 0) yield i
+    val a = indexes.drop(1)
+    for (i <- a.indices.reverse) { // notice you need to reverse it when drop
+      arr.remove(a(i))
+    }
+    arr
+  }
+```
+
 
