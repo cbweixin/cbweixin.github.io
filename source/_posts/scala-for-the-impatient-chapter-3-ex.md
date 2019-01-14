@@ -276,4 +276,42 @@ tags: scala
   }
 ```
 
+## ex 10
+    ```scala
+  /**
+    * Ex 10:
+    *
+    * Make a collection of all timezones returned by java.util.TimeZone.getAvailableIDs that are in America. Strip
+    * off the
+    * "America/" prefix and sort the result.
+    *
+    * @return
+    */
+  private def americaTimezones: Array[String] = {
+    TimeZone.getAvailableIDs.filter(_.startsWith("America/")).map(_.stripPrefix("America/")).sorted
+  }
+
+  private def americaTimezones2: Array[String] = {
+    // no need to sort
+    TimeZone.getAvailableIDs.filter(_.startsWith("America/")).map(_.drop("America/".length))
+  }
+    ```
+## ex 11
+```scala
+  /**
+    * Ex 11:
+    * Import java.awt.datatransfer._ and make an object of type SystemFlavorMap with the call
+    * val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+    * Then call the getNativesForFlavor method with parameter DataFlavor.imageFlavor and get the return value as a
+    * Scala buffer. (Why this obscure class? It’s hard to find uses of java.util.List in the standard Java library.)
+    *
+    * @return
+    */
+  private def getFlavors: mutable.Buffer[String] = {
+    import scala.collection.JavaConversions.asScalaBuffer
+    val flavors = SystemFlavorMap.getDefaultFlavorMap.asInstanceOf[SystemFlavorMap]
+    flavors.getNativesForFlavor(DataFlavor.imageFlavor)
+  }
+```
+
 
