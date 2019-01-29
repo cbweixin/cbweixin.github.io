@@ -240,7 +240,9 @@ still immutable faster than mutable
     }
     words
   }
+```
 result :
+
 ```
 test7: mutable tree map===============
  Elpased time : 17678666ns
@@ -248,5 +250,199 @@ test7: mutable tree map===============
 test8: immutable tree map===============
  Elpased time : 17895029ns
  Elpased time : 17ms
+
 ```
 
+there are duplicate code of read files, we can wrap it as a function also
+```scala
+  def processWords(process : String => Unit) : Unit = {
+    val in = new Scanner(getClass.getResourceAsStream("/myfile.txt"))
+    try {
+      while (in.hasNext()) {
+        process(in.next())
+      }
+    } finally {
+      in.close()
+    }
+
+  }
+```
+
+then rewrite the code like this:
+
+```scala
+  private def countWordsWithImutableMap2() : immutable.Map[String, Int] = {
+    var words = new immutable.HashMap[String, Int]
+    processWords(w => words += w -> (words.getOrElse(w,0) + 1))
+    words
+  }
+
+  private def countWordsInFile2(): mutable.Map[String, Int] = {
+    val words = new mutable.HashMap[String, Int]
+    processWords(w => words(w) = words.getOrElse(w, 0) + 1)
+    words
+  }
+
+```
+
+
+## ex 6
+```scala
+  /**
+    * ex 6
+    *
+    * Define a linked hash map that maps "Monday" to java.util.Calendar.MONDAY, and similarly for the other weekdays.
+    * Demonstrate that the elements are visited in insertion order.
+    *
+    * @return
+    */
+  def weekdaysLinkedHashMap(): mutable.Map[String, Int] = {
+    import java.util.Calendar._
+    val days = scala.collection.mutable.LinkedHashMap(
+      "MONDAY" -> MONDAY,
+      "TUESDAY" -> TUESDAY,
+      "WEDNESDAY" -> WEDNESDAY,
+      "THURSDAY" -> THURSDAY,
+      "FRIDAY" -> FRIDAY,
+      "SATURDAY" -> SATURDAY,
+      "SUNDAY" -> SUNDAY
+    )
+
+    days
+  }
+```
+
+## ex 7
+
+```scala
+
+  /**
+    * Print a table of all Java properties reported by the getProperties method of the java.lang.System
+    * class, like this:
+    * 53
+    * java.runtime.name
+    * sun.boot.library.path
+    * java.vm.version
+    * java.vm.vendor
+    * java.vendor.url
+    * path.separator
+    * java.vm.name
+    * | Java(TM) SE Runtime Environment
+    * | /home/apps/jdk1.6.0_21/jre/lib/i386 | 17.0-b16
+    * | Sun Microsystems Inc.
+    * | http://java.sun.com/
+    * |:
+    * | Java HotSpot(TM) Server VM
+    *
+    * @return
+    */
+  def formatJavaProperties(): List[String] = {
+    import scala.collection.JavaConversions.propertiesAsScalaMap
+    val props = propertiesAsScalaMap(System.getProperties)
+    val maxKeyLen = props.keySet.map(_.length).max
+
+    val result = ListBuffer[String]()
+    for((key,value)<-props){
+      result += key.padTo(maxKeyLen, ' ') + " | " + value
+    }
+
+    result.toList
+  }
+```
+
+result:
+
+```
+test9: print propers===============
+java.runtime.name             | Java(TM) SE Runtime Environment
+sun.boot.library.path         | /Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib
+java.vm.version               | 25.141-b15
+gopherProxySet                | false
+java.vm.vendor                | Oracle Corporation
+java.vendor.url               | http://java.oracle.com/
+path.separator                | :
+java.vm.name                  | Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg             | sun.io
+user.country                  | US
+sun.java.launcher             | SUN_STANDARD
+sun.os.patch.level            | unknown
+java.vm.specification.name    | Java Virtual Machine Specification
+user.dir                      | /Users/xwei/workspace/network/scala-for-the-impatient
+java.runtime.version          | 1.8.0_141-b15
+java.awt.graphicsenv          | sun.awt.CGraphicsEnvironment
+java.endorsed.dirs            | /Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/endorsed
+os.arch                       | x86_64
+java.io.tmpdir                | /var/folders/jj/5z5gvtyd1cbbbg7wv6lknbbw64qwnz/T/
+line.separator                |
+
+java.vm.specification.vendor  | Oracle Corporation
+os.name                       | Mac OS X
+sun.jnu.encoding              | UTF-8
+java.library.path             | /Users/xwei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+java.specification.name       | Java Platform API Specification
+java.class.version            | 52.0
+sun.management.compiler       | HotSpot 64-Bit Tiered Compilers
+os.version                    | 10.14.2
+user.home                     | /Users/xwei
+user.timezone                 |
+java.awt.printerjob           | sun.lwawt.macosx.CPrinterJob
+file.encoding                 | UTF-8
+java.specification.version    | 1.8
+java.class.path               | /Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/lib/tools.jar:/Users/xwei/workspace/network/scala-for-the-impatient/target/scala-2.12/classes:/Users/xwei/.sbt/boot/scala-2.12.4/lib/scala-library.jar:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar
+user.name                     | xwei
+java.vm.specification.version | 1.8
+sun.java.command              | chapt4.Exercises
+java.home                     | /Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre
+sun.arch.data.model           | 64
+user.language                 | en
+java.specification.vendor     | Oracle Corporation
+awt.toolkit                   | sun.lwawt.macosx.LWCToolkit
+java.vm.info                  | mixed mode
+java.version                  | 1.8.0_141
+java.ext.dirs                 | /Users/xwei/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+sun.boot.class.path           | /Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_141.jdk/Contents/Home/jre/classes
+java.vendor                   | Oracle Corporation
+file.separator                | /
+java.vendor.url.bug           | http://bugreport.sun.com/bugreport/
+sun.io.unicode.encoding       | UnicodeBig
+sun.cpu.endian                | little
+sun.cpu.isalist               |
+
+Process finished with exit code 0
+```
+
+
+## ex 8
+
+```scala
+  /**
+    *
+    * ex 8
+    *
+    * Write a function minmax(values: Array[Int]) that returns a pair
+    * containing the smallest and the largest values in the array.
+    *
+    * @param values
+    * @return
+    */
+  def minmax(values: Array[Int]): (Int, Int) = (values.min, values.max)
+```
+
+## ex 9
+
+```scala
+
+  /**
+    * ex 9
+    *
+    * Write a function lteqgt(values: Array[Int], v: Int) that returns a triple containing the
+    * counts of values less than v, equal to v, and greater than v.
+    *
+    * @param values
+    * @param v
+    * @return
+    */
+  def lteqgt(values: Array[Int], v: Int): (Int, Int, Int) = {
+    (values.count(_ < v), values.count(_ == v), values.count(_ > v))
+  }
+```
