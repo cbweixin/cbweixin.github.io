@@ -184,3 +184,97 @@ Time is: 1:30
 true
 false
 ```
+
+## ex 5:
+
+```scala
+  /**
+    *
+    * Make a class Student with read-write JavaBeans properties name (of type String) and id (of type Long).
+    * What methods are generated? (Use javap to check.)
+    * Can you call the JavaBeans getters and setters in Scala? Should you?
+    */
+  class Student {
+    @BeanProperty
+    var name: String = ""
+
+    @BeanProperty
+    var id: Long = 0
+  }
+
+class Student2(@BeanProperty var name : String, @BeanProperty var id : Long)
+```
+
+test:
+
+```scala
+println("ex 5==============")
+  val st = new Student
+  st.setId(124)
+  st.setName("hello")
+  println(st.id)
+  println(st.name)
+
+  val st2 = new Student2("hello",123)
+  println(st2.id)
+  println(st2.name)
+  st2.setName("world")
+  st2.setId(345)
+  println(st2.id)
+  println(st2.name)
+```
+
+result:
+
+```
+ex 5==============
+124
+hello
+123
+hello
+345
+world
+```
+
+decompile the class, got:
+
+```shell
+ xwei  mtvl15397a13f  ~  workspace  …  scala-2.12  classes  chapt5  master 4???? $  ls
+Exercises$.class      Exercises$Student.class     Exercises$Time2.class
+Exercises$BankAccount.class   Exercises$Student2.class    Exercises$delayedInit$body.class
+Exercises$Counter.class     Exercises$Time.class      Exercises.class
+ xwei  mtvl15397a13f  ~  workspace  …  scala-2.12  classes  chapt5  master 4???? $  javap -private Exercises\$Student
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Warning: Binary file Exercises$Student contains chapt5.Exercises$Student
+Compiled from "Exercises.scala"
+public class chapt5.Exercises$Student {
+  private java.lang.String name;
+  private long id;
+  public java.lang.String name();
+  public void name_$eq(java.lang.String);
+  public long id();
+  public void id_$eq(long);
+  public long getId();
+  public java.lang.String getName();
+  public void setId(long);
+  public void setName(java.lang.String);
+  public chapt5.Exercises$Student();
+}
+ xwei  mtvl15397a13f  ~  workspace  …  scala-2.12  classes  chapt5  master 4???? $  javap -private Exercises\$Student2
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Warning: Binary file Exercises$Student2 contains chapt5.Exercises$Student2
+Compiled from "Exercises.scala"
+public class chapt5.Exercises$Student2 {
+  private java.lang.String name;
+  private long id;
+  public java.lang.String name();
+  public void name_$eq(java.lang.String);
+  public long id();
+  public void id_$eq(long);
+  public long getId();
+  public java.lang.String getName();
+  public void setId(long);
+  public void setName(java.lang.String);
+  public chapt5.Exercises$Student2(java.lang.String, long);
+}
+```
