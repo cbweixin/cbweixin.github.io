@@ -93,3 +93,94 @@ ex 2==========
 dude, why not rob the bank...
 100
 ```
+
+
+## ex 3
+
+```scala
+  /**
+    * Write a class Time with read-only properties hours and minutes and a method
+    * before(other: Time): Boolean
+    * that checks whether this time comes before the other.
+    * A Time object should be constructed as new Time(hrs, min), where hrs is in
+    * military time format (between 0 and 23).
+    *
+    * @param h
+    * @param min
+    */
+  class Time(private val h: Int, private val min: Int) {
+
+    def hour: Int = h
+    def minute: Int = min
+
+    def before(other: Time): Boolean ={
+      if(h == other.h){
+        return min < other.min
+      }
+      h < other.h
+    }
+
+    def before2(other: Time) : Boolean = h * 60 + min < other.h * 60 + other.min
+  }
+```
+
+test:
+```scala
+ println("Time is: " + time.hour + ":" + time.minute)
+
+  println(time.before(new Time(2, 30)))
+  println(time.before(new Time(1, 10)))
+
+  println(time.before2(new Time(2, 30)))
+  println(time.before2(new Time(1, 10)))
+```
+
+result:
+
+```
+ex 3==============
+Time is: 1:30
+true
+false
+true
+false
+```
+
+
+## ex 4
+```scala
+  /**
+    *
+    * Reimplement the Time class from the preceding exercise so that the internal representation is the number
+    * of minutes since midnight (between 0 and 24 × 60 – 1). Do not change the public
+    * interface. That is, client code should be unaffected by your change.
+    *
+    * @param h
+    * @param min
+    */
+  class Time2(private val h: Int, private val min: Int) {
+    private val mins: Int = h * 60 + min
+
+    def hour: Int = h
+    def minute: Int = min
+
+    def before(other: Time2) : Boolean = mins < other.mins
+  }
+```
+test:
+```scala
+ println("ex 4==============")
+  val time2 = new Time2(1, 30)
+  println("Time is: " + time2.hour + ":" + time2.minute)
+
+  println(time2.before(new Time2(2, 30)))
+  println(time2.before(new Time2(1, 10)))
+```
+
+result:
+```
+ex 4==============
+Time is: 1:30
+true
+false
+```
