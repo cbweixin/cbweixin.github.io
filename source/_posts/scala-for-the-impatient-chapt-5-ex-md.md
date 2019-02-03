@@ -278,3 +278,129 @@ public class chapt5.Exercises$Student2 {
   public chapt5.Exercises$Student2(java.lang.String, long);
 }
 ```
+
+## ex 6
+```scala
+/**
+    *
+    * In the Person class of Section 5.1, “Simple Classes and Parameterless Methods,” on page 55,
+    * provide a primary constructor that turns negative ages to 0.
+    * @param age
+    */
+  class Person(var age: Int = 0){
+    if(age < 0 ) age = 0
+  }
+```
+
+test:
+
+```scala
+println("ex 6==============")
+  val p = new Person(5)
+  println(p.age)
+
+  val n = new Person(-5)
+  println(n.age)
+```
+
+result:
+
+```
+ex 6==============
+5
+0
+
+```
+
+
+## ex 7
+
+```scala
+
+  /**
+    * Write a class Person with a primary constructor that accepts a string containing a first name,
+    * a space, and a last name, such as new Person("Fred Smith"). Supply read-only properties
+    * firstName and lastName. Should the primary constructor
+    * parameter be a var, a val, or a plain parameter? Why?
+    *
+    * @param name
+    */
+  class Person2(name: String) {
+    val firstName = name.split(" ")(0)
+    val lastName = name.split(" ")(1)
+
+    override def toString: String = "Person2(" + firstName + ", " + lastName + ")"
+  }
+
+
+  // primary constructor is a private one
+  class Person3 private (names: Array[String]) {
+    val firstName : String = names(0)
+    val lastName: String = names(1)
+
+    // second(auxiliary) constructor
+    def this(name: String){
+      this(Person3.parsedName(name))
+    }
+
+    override def toString: String = "Person3(" + firstName + ", " + lastName + ")"
+  }
+
+  private object Person3{
+    def parsedName(name: String) : Array[String] = {
+      val names = name.split(" ")
+      if(names.length < 2){
+        throw new IllegalArgumentException("shuld have firstName and lastName")
+      }
+      names
+    }
+  }
+
+```
+
+test:
+
+```scala
+ println("ex 7==============")
+  val p2 = new Person2("Bill Gates")
+  println(p2)
+
+  val p3 = new Person3("hello kitty")
+  println(p3)```
+
+result:
+
+```
+ex 7==============
+Person2(Bill, Gates)
+Person3(hello, kitty)
+```
+
+I have `Person2` and `Person3`m, what's the differences?
+
+```shell
+ xwei  mtvl15397a13f  ~  workspace  …  scala-2.12  classes  chapt5  master 6???? $  javap -private Exercises\$Person2.class
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Compiled from "Exercises.scala"
+public class chapt5.Exercises$Person2 {
+  private final java.lang.String firstName;
+  private final java.lang.String lastName;
+  public java.lang.String firstName();
+  public java.lang.String lastName();
+  public java.lang.String toString();
+  public chapt5.Exercises$Person2(java.lang.String);
+}
+ xwei  mtvl15397a13f  ~  workspace  …  scala-2.12  classes  chapt5  master 6???? $  javap -private Exercises\$Person3.class
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Compiled from "Exercises.scala"
+public class chapt5.Exercises$Person3 {
+  private final java.lang.String firstName;
+  private final java.lang.String lastName;
+  public java.lang.String firstName();
+  public java.lang.String lastName();
+  public java.lang.String toString();
+  private chapt5.Exercises$Person3(java.lang.String[]);
+  public chapt5.Exercises$Person3(java.lang.String);
+}
+```
+
