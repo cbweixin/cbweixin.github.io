@@ -404,3 +404,306 @@ public class chapt5.Exercises$Person3 {
 }
 ```
 
+## ex 8
+
+```scala
+  /**
+    *
+    * Make a class Car with read-only properties for manufacturer, model name, and model year,
+    * and a read-write property for the license plate. Supply four constructors.
+    * All require the manufacturer and model name. Optionally, model year and license plate can
+    * also be specified in the constructor. If not, the model year is set to -1 and the license
+    * plate to the empty string. Which constructor are you choosing as the primary constructor? Why?
+    *
+    * @param manufacture
+    * @param modelName
+    * @param modelYear
+    * @param licence
+    */
+  class Car(val manufacture: String,
+            val modelName: String,
+            val modelYear: Int = -1,
+            val licence: String = "") {
+    def this(manufacture: String, modelName: String, license: String) {
+      this(manufacture, modelName, -1, license)
+    }
+
+    override def toString: String =
+      "Car(" + manufacture + ", " + modelName + ", " + modelYear + ", " + licence + ")"
+  }
+```
+
+test:
+
+```scala
+ println("ex 8==============")
+  val car1 = new Car("honda", "civic", 1982, "12366")
+  println(car1)
+  val car2 = new Car("honda", "civic", 1982)
+  println(car2)
+  val car3 = new Car("honda", "civic", "12356")
+  println(car3)
+  val car4 = new Car("honda", "civic")
+  println(car4)
+
+```
+
+result:
+
+```
+ex 8==============
+Car(honda, civic, 1982, 12366)
+Car(honda, civic, 1982, )
+Car(honda, civic, -1, 12356)
+Car(honda, civic, -1, )
+```
+
+after decompile, the java class is looks like this :
+
+```java
+package chapt5;
+
+public class Exercises$Car
+{
+  private final String manufacture;
+
+  public String manufacture()
+  {
+    return this.manufacture;
+  }
+
+  public String modelName()
+  {
+    return this.modelName;
+  }
+
+  public int modelYear()
+  {
+    return this.modelYear;
+  }
+
+  public String licence()
+  {
+    return this.licence;
+  }
+
+  public Exercises$Car(String manufacture, String modelName, String license)
+  {
+    this(manufacture, modelName, -1, license);
+  }
+
+  public String toString()
+  {
+    return "Car(" + manufacture() + ", " + modelName() + ", " + modelYear() + ", " + licence() + ")";
+  }
+
+  public Exercises$Car(String manufacture, String modelName, int modelYear, String licence) {}
+}
+```
+
+
+## ex 10
+
+```scala
+  /**
+    *
+    * Consider the class
+    *
+    * class Employee(val name: String, var salary: Double) {
+    *   def this() { this("John Q. Public", 0.0) }
+    * }
+    *
+    * Rewrite it to use explicit fields and a default primary constructor. Which form do you prefer? Why?
+    *
+    */
+  class Employee {
+    val name : String = "John Q. Pbulic"
+    val salary : Double = 0.0
+
+    override def toString: String = "Employee(" + name + ", " + salary + ")"
+  }
+
+```
+
+decompile:
+
+```java
+public class Exercises$Employee
+{
+  public String name()
+  {
+    return this.name;
+  }
+
+  private final String name = "John Q. Pbulic";
+
+  public double salary()
+  {
+    return this.salary;
+  }
+
+  private final double salary = 0.0D;
+
+  public String toString()
+  {
+    return "Employee(" + name() + ", " + salary() + ")";
+  }
+}
+```
+
+another attempt:
+
+```scala
+  class Employee2 {
+    private var _name = "John Q. Public"
+    var salary = 0.0
+
+    def this(n: String, s: Double) {
+      this()
+      _name = n;
+      salary = s;
+    }
+
+    def name = _name // read-only property, but private var
+    override def toString = "Employee2(%s, %f)".format(name, salary)
+  }
+```
+
+decompile:
+```java
+import scala.Predef.;
+import scala.collection.immutable.StringOps;
+import scala.runtime.BoxesRunTime;
+
+public class Exercises$Employee2
+{
+  private String _name()
+  {
+    return this._name;
+  }
+
+  private void _name_$eq(String x$1)
+  {
+    this._name = x$1;
+  }
+
+  private String _name = "John Q. Public";
+
+  public double salary()
+  {
+    return this.salary;
+  }
+
+  public void salary_$eq(double x$1)
+  {
+    this.salary = x$1;
+  }
+
+  private double salary = 0.0D;
+
+  public Exercises$Employee2(String n, double s)
+  {
+    this();
+    _name_$eq(n);
+    salary_$eq(s);
+  }
+
+  public String name()
+  {
+    return _name();
+  }
+
+  public String toString()
+  {
+    return new StringOps(Predef..MODULE$.augmentString("Employee2(%s, %f)")).format(Predef..MODULE$.genericWrapArray(new Object[] { name(), BoxesRunTime.boxToDouble(salary()) }));
+  }
+
+  public Exercises$Employee2() {}
+}
+
+```
+
+attempt 3:
+```scala
+  class Employee3(private var n: String, private var s: Double){
+    def name: String = n
+    def salary: Double = s
+
+    override def toString = "Employee3(%s, %f)".format(name, salary)
+
+  }
+
+
+```
+decompile,got:
+
+```java
+import scala.Predef.;
+import scala.collection.immutable.StringOps;
+import scala.runtime.BoxesRunTime;
+
+public class Exercises$Employee3
+{
+  private String n;
+
+  private String n()
+  {
+    return this.n;
+  }
+
+  private void n_$eq(String x$1)
+  {
+    this.n = x$1;
+  }
+
+  private double s()
+  {
+    return this.s;
+  }
+
+  private void s_$eq(double x$1)
+  {
+    this.s = x$1;
+  }
+
+  public String name()
+  {
+    return n();
+  }
+
+  public double salary()
+  {
+    return s();
+  }
+
+  public String toString()
+  {
+    return new StringOps(Predef..MODULE$.augmentString("Employee3(%s, %f)")).format(Predef..MODULE$.genericWrapArray(new Object[] { name(), BoxesRunTime.boxToDouble(salary()) }));
+  }
+
+  public Exercises$Employee3(String n, double s) {}
+}
+```
+
+compare `Employee2` and `Employe3`, looks like only 2 has a auxiliary constructor.
+
+test:
+
+```scala
+println("ex 10==============")
+  val e = new Employee
+  println(e)
+  val e1 = new Employee2("abc", 10000)
+  println(e1)
+  val e2 = new Employee3("def", 200000)
+  println(e2)
+```
+
+got:
+
+```
+ex 10==============
+Employee(John Q. Pbulic, 0.0)
+Employee2(abc, 10000.000000)
+Employee3(def, 200000.000000)
+```
