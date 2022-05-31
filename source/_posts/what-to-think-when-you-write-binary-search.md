@@ -1,7 +1,6 @@
 title: what to think when you write binary search
 date: 2016-02-16 06:50:44
 categories: 
-- programming
 - algorithm and data structure
 tags: binary search
 ---

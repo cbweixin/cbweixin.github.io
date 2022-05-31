@@ -1,7 +1,6 @@
 title: manacher's algorithm
 date: 2016-05-11 13:32:50
 categories: 
-- programming
 - algorithm and data structure
 tags: palindrom
 ---
