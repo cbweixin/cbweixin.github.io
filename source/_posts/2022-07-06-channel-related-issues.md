@@ -159,7 +159,192 @@ result : %!n(int=100)
 result : %!n(int=100)
 after goroutine num: 1
 ```
+memory leak bug got fixed. 
 
+another example:
+```go
+func leak2() {
+	ch := make(chan int)
+
+	// consumer
+	go func() {
+		for result := range ch {
+			fmt.Printf("result : %d\n", result)
+		}
+	}()
+
+	// producer
+	ch <- 1
+	ch <- 2
+	time.Sleep(time.Second)
+	fmt.Println("producer exist")
+
+}
+
+func main() {
+	fmt.Printf("before goroutine num: %d\n", runtime.NumGoroutine())
+	for i := 0; i < 10; i++ {
+		leak2()
+	}
+	fmt.Printf("after goroutine num: %d\n", runtime.NumGoroutine())
+}
+```
+result :
+```shell
+before goroutine num: 1
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+result : 1
+result : 2
+producer exist
+after goroutine num: 11
+```
+this happens because of this code:
+```go
+		for result := range ch {
+			fmt.Printf("result : %d\n", result)
+		}
+```
+for .... range code is blocking consumer, to fix this bug, we need to close channel
+
+```go
+	ch <- 1
+	ch <- 2
+	time.Sleep(time.Second)
+	fmt.Println("producer close channel")
+	close(ch)
+```
+result :
+```shell
+before goroutine num: 1
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+result : 1
+result : 2
+producer close channel
+after goroutine num: 1
+```
+
+## panic
+```go
+func panic1() {
+	// panic, try to send to a closed channel
+	ch := make(chan int, 1)
+	close(ch)
+	ch <- 1
+}
+
+func main() {
+	panic1()
+}
+```
+result 
+
+```shell
+panic: send on closed channel
+
+goroutine 1 [running]:
+main.panic1(...)
+        /Users/xin.wei/github-personal/leetcode-go/concurrency/chanel_deadlock.go:68
+main.main()
+        /Users/xin.wei/github-personal/leetcode-go/concurrency/chanel_deadlock.go:72 +0x45
+
+```
+
+another example
+```go
+func panic2() {
+	ch := make(chan int, 1)
+	done := make(chan  struct{}, 1)
+
+	go func() {
+		<- time.After(2 * time.Second)
+		fmt.Println("close channel 2")
+		close(ch)
+		close(done)
+	}()
+
+	go func() {
+		<- time.After(1*time.Second)
+		fmt.Println("close 1")
+		ch <- 1
+		close(ch)
+	}()
+	<- done
+
+}
+
+func main() {
+	panic2()
+}
+```
+
+
+result
+
+```shell
+close 1
+close channel 2
+panic: close of closed channel
+
+goroutine 18 [running]:
+main.panic2.func1()
+        /Users/xin.wei/github-personal/leetcode-go/concurrency/chanel_deadlock.go:78 +0x86
+created by main.panic2
+        /Users/xin.wei/github-personal/leetcode-go/concurrency/chanel_deadlock.go:75 +0x9d
+
+Process finished with the exit code 2
+```
 
 
 
