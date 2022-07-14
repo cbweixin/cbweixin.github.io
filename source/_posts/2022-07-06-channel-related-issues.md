@@ -275,6 +275,122 @@ producer close channel
 after goroutine num: 1
 ```
 
+another example which caused deadlock
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg sync.WaitGroup
+
+func foo(c chan int, someValue int) {
+	defer wg.Done()
+	c <- someValue * 5
+}
+
+func main() {
+	fooVal := make(chan int)
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+		go foo(fooVal, i)
+
+	}
+
+	wg.Wait()     // Wait for all routines to complete
+	close(fooVal) // close channel
+
+	for item := range fooVal {
+		fmt.Println(item)
+	}
+}
+```
+![output](https://user-images.githubusercontent.com/1326906/179034894-8e4e1407-132d-47ad-8bfb-513648d370ef.png)
+
+at line 25, `wg.Wait` is blocking, waiting for subroutine create at line 14. but `fooVar` is an unbuffered channel, so
+at line 14, `c <- someValue * 5` is also a blocking call. only when channel has consumer to consume, then goroutine
+`foo` be able to resume and do `wg.Done`. but problem is the `for .. range fooVar` is after `wg.Wait`, the execution is
+stucked at `wg.Wait` not able to move forward, so wg is wating for foo, foo is waiting for wg, deadlock happens. 
+
+solution, make `fooVal` a buffered channel with size 10. 
+
+the output is as this:
+```shell
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [semacquire]:
+sync.runtime_Semacquire(0xc00000c108?)
+	/usr/local/go-faketime/src/runtime/sema.go:56 +0x25
+sync.(*WaitGroup).Wait(0x0?)
+	/usr/local/go-faketime/src/sync/waitgroup.go:136 +0x52
+main.main()
+	/tmp/sandbox1602794817/prog.go:25 +0xae
+
+goroutine 6 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 7 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 8 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 9 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 10 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 11 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 12 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 13 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 14 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+goroutine 15 [chan send]:
+main.foo(0x0?, 0x0?)
+	/tmp/sandbox1602794817/prog.go:14 +0x69
+created by main.main
+	/tmp/sandbox1602794817/prog.go:21 +0x3d
+
+Program exited.
+```
+
 ## panic
 ```go
 func panic1() {
