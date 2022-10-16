@@ -135,12 +135,83 @@ class MRUQueue:
         # re-balancing, need to guarantee each has size sqrt(n)
         for i in range(idx, len(self.buckets)-1):
             self.buckets[i].append(self.buckets[i+1].pop(0))
-
+ 
         return self.buckets[-1][-1]
 
 ```
 - runtime: 297ms
 - memory: 15.3MB
+
+## solution 5 - binary index tree
+```python
+class BIT:
+    """
+    binary index tree (BIT) or fenwick tree
+    """
+
+    def __init__(self, n: int):
+        self.nums = [0] * (n + 1)
+
+    def sum(self, k: int):
+        res = 0
+        # notice the bit start from index 1
+        k += 1
+        while k:
+            res += self.nums[k]
+            k -= self._lowbit(k)
+        return res
+
+    def add(self, k: int, x: int):
+        # notice the bit start from index 1
+        k += 1
+        while k < len(self.nums):
+            self.nums[k] += x
+            k += self._lowbit(k)
+
+    def _lowbit(self, x: int):
+        return x & (-x)
+
+class MRUQueue:
+    def __init__(self, n: int):
+        # total query <= 2000
+        #  At most 2000 calls will be made to fetch.
+        self.bit = BIT(n + 2000)
+        self.size = n
+        self.vals = [0] * (n + 2000)
+
+        # time complexity O(NlogN)
+        for i in range(n):
+            # bit record how many elements are there at index i
+            # time complexity O(logN)
+            self.bit.add(i, 1)
+            # self.vals , index -> element value mapping
+            self.vals[i] = i + 1
+
+    def fetch(self, k: int) -> int:
+        lo, high = 0, self.size
+        # binary seach on bit tree, find index mid so from [0,mid] which exactly has k element
+        # time complexity: O(lgN * lgN) = O((lgN)^2)
+        while lo < high:
+            mid = (lo + high) >> 1
+            # time complexity: O(logN)
+            if self.bit.sum(mid) < k:
+                lo = mid + 1
+            else:
+                high = mid
+        # add kth element to the tail
+        self.vals[self.size] = self.vals[lo]
+        # since kth element moved to tail, so at postion lo we need to deduct 1 element
+        self.bit.add(lo, -1)
+        # since tail has extra element, we need to record it on bit tree
+        self.bit.add(self.size, 1)
+        # since we append elment to tail, the size need to increment
+        self.size += 1
+
+        return self.vals[lo]
+```
+
+
+
 
 
 
