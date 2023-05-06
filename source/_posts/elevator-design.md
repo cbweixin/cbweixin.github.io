@@ -2,7 +2,6 @@ title: elevator-design part 1
 date: 2016-08-17 11:29:09
 categories:
 - programming
-- design
 tags: system design
 ---
 
