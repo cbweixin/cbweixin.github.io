@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title> | Wei Xin</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Wei Xin</h1><a id="logo" href="/.">Wei Xin</a><p class="description"></p></div><div id="nav-menu"><a href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a class="current" href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"></h1><div class="post-content"><h1 id="Wei-Xin"><a href="#Wei-Xin" class="headerlink" title="Wei, Xin"></a>Wei, Xin</h1><ul>
+<li><a href="mailto:&#99;&#x62;&#x77;&#101;&#x69;&#120;&#x69;&#x6e;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#99;&#x62;&#x77;&#101;&#x69;&#120;&#x69;&#x6e;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a></li>
+<li><a target="_blank" rel="noopener" href="http://jsdom.wordpress.com/">http://jsdom.wordpress.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/weixin">https://www.linkedin.com/in/weixin</a></li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>10 years progressive experience in software industry. Currently working as backend engineer for site infrastructure and platform webservices. Used to be a full-stack engineer for more than 6 years. </p>
+<h2 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h2><h3 id="Intuit-infrastructure-team"><a href="#Intuit-infrastructure-team" class="headerlink" title="Intuit infrastructure team"></a>Intuit infrastructure team</h3><h4 id="Senior-Software-Engineer"><a href="#Senior-Software-Engineer" class="headerlink" title="Senior Software Engineer"></a>Senior Software Engineer</h4><h4 id="Attendee-Jan-2015-present"><a href="#Attendee-Jan-2015-present" class="headerlink" title="Attendee - Jan 2015 - present"></a>Attendee - Jan 2015 - present</h4><p>Target for <strong>Availability</strong>, <strong>Scalability</strong>, <strong>Resilency</strong>, and <strong>Performance</strong> of <a target="_blank" rel="noopener" href="https://quickbook.intuit.com/">quickbook</a></p>
+<p><strong>Voyager</strong> move QBO to AWS</p>
+<ul>
+<li><p>dispatcher services, serves 200k QPS now</p>
+<ul>
+<li>implement web servic for traffic routing, algorithm for traffic shaping and load shedding </li>
+<li>implement client sdk for downstream dependencies to consume this service</li>
+<li>implement far-near cache by using coherence</li>
+<li>implement authentication/verification by following intuit secrurity protocol</li>
+<li>write stack creation, auto sccaling,health and alert rules by using AWS api, cloudformation and chef script </li>
+</ul>
+</li>
+<li><p>email service, serves 1000k QPS/hour now</p>
+<ul>
+<li>rewrite intuit email service by using sendgrid api instead of intuit smtp</li>
+<li>integration with hystrix to increase resiliency, reduce latency and improve fault tolerance </li>
+<li>implement authentication/verification by following intuit security protocol</li>
+</ul>
+</li>
+<li><p>background cron job processing </p>
+<ul>
+<li>implement network audit agent to instrument network access, find vulerabilities</li>
+<li>implement application encryption/decryption</li>
+<li>implemenet authentication/verification by following intuit security protocol</li>
+</ul>
+</li>
+<li><p>decommission internanl url</p>
+<ul>
+<li>implement network audit agent to instrument network access, find internal url call</li>
+<li>implement public url generaton</li>
+<li>implement authentication/verification by following intuit security protocol</li>
+</ul>
+</li>
+</ul>
+<p><strong>Active-Active</strong><br>2. quickbook migration to AWS from intuit data center</p>
+<p><strong>High avability</strong></p>
+<ol>
+<li>implement bash for monitoring QBO server and automation test</li>
+<li>release verification, performance monitoring and analysis under a high concurrency and multithreading environment</li>
+<li>integrate netflix hystrix to short circuit failed micro-service to improve resiliency</li>
+</ol>
+<p><strong>tech stack</strong>: spring, mybatis, mysql, chef,aws cli, cloudformation, cloudwatch,RDS, EC2, S3, Route 53, VPC,  splunk, new relic, dynatrace, youkit, keynote, hystrix, Jenkins</p>
+<h3 id="Intuit-platform-team"><a href="#Intuit-platform-team" class="headerlink" title="Intuit platform team"></a>Intuit platform team</h3><h4 id="Senior-Software-Engineer-1"><a href="#Senior-Software-Engineer-1" class="headerlink" title="Senior Software Engineer"></a>Senior Software Engineer</h4><h4 id="Attendee-Apri-2014-Jan-2015"><a href="#Attendee-Apri-2014-Jan-2015" class="headerlink" title="Attendee - Apri 2014 - Jan 2015"></a>Attendee - Apri 2014 - Jan 2015</h4><p><strong>v3 webservices and nextgen webservices</strong></p>
+<ol>
+<li>implement rest api for qbo linked transaction service</li>
+<li>implement rest api for manual update bank transaction service</li>
+<li>performance profile and code instrument for bottneck diagnosis and performance improvement,<br>various bug fixing, unit testing</li>
+</ol>
+<p><strong>tech stack</strong>: spring DI, jax-rs, jersey, rest-easy, jackson, spring boot, spring aop, jmockit, jenkins, sonarcube</p>
+<p><strong>nearline recommenation engine</strong><br>real-time recommendation</p>
+<ol>
+<li>storm topology design </li>
+<li>drools rule engine design</li>
+</ol>
+<p><strong>tech stack</strong>: acitvemq, zookeeper, storm, drools, spring core, redis, mybatis, saltstack</p>
+<p><strong>elastic search</strong></p>
+<ol>
+<li>qbo search ui</li>
+<li>java integration with elastic search, such as manage mappings, manage documents and parse the query string from ui.</li>
+</ol>
+<p><strong>tech stack</strong>: </p>
+<ul>
+<li>backend<br>restful api,elastic search,jersey,jackson,spring DI,jax-rs,jersey,rest-easy,spring boot,spring aop,jmockit,jenkins,sonarcube</li>
+<li>front end<br>dojo, compass,sass,nodejs,grunt,bower,intern </li>
+</ul>
+<h3 id="Actuate"><a href="#Actuate" class="headerlink" title="Actuate"></a>Actuate</h3><h4 id="Lead-Software-Engineer"><a href="#Lead-Software-Engineer" class="headerlink" title="Lead Software Engineer"></a>Lead Software Engineer</h4><h4 id="Attendee-Apri-2008-April-2014"><a href="#Attendee-Apri-2008-April-2014" class="headerlink" title="Attendee - Apri 2008 - April 2014"></a>Attendee - Apri 2008 - April 2014</h4><p>Lead Teams through complex framework projects of significant importance to the enhancement of the<br>company services. These projects involve designing, building, implementing, and prototyping.</p>
+<p><strong>Actuate Mobile Viewing Framework</strong></p>
+<ol>
+<li>Conceived, Built, and Executed framework for this project in order to expose Business<br>Intelligence and Reporting Tools, (BIRT), and report viewing features in a mobile environment<br>which resulted in successfully exposing BIRT to mobile users.</li>
+<li>Actuate Mobile Viewer was a Sencha Touch Based HTML5 native container hybrid system<br>which ran on an tablet or phone. Improved functionality and efficiency.</li>
+<li>Apache Cordova was integrated to expose native device functionalities to javascript API.</li>
+<li><a target="_blank" rel="noopener" href="https://itunes.apple.com/us/app/birt-ihub-viewer-hd/id370914749?mt=8">BIRT Mobile for iOS</a></li>
+<li><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.actuate.birt">BIRT Mobile for Android</a></li>
+</ol>
+<p><strong>Acutate Dashboard Framework</strong></p>
+<ol>
+<li>Designed, Constructed, and Implemented framework for this project which allowed for users<br>to be able to access and incorporate into a single page numerous visualization gadgets such<br>as: tables, charts, crosstabs, and flash content. Improved quality of services offered.</li>
+<li>Created and built publish-subscription structure among gadgets that supported data interoperation. Improved system functionality.</li>
+<li>The framework consists of a JavaScript runtime in browser client and a Java based middle<br>tier in server side retrieving the data, handling the synchronization of requests that update<br>data and render content.</li>
+<li><a target="_blank" rel="noopener" href="http://www.slideshare.net/birtyguy/birt-360-dashboards">link</a></li>
+</ol>
+<p><strong>Actuate JavaScript Application Program Interface, (API), Framework</strong></p>
+<ol>
+<li>Designed, Constructed, and Executed framework for this project which supported the<br>dynamically loading client resources, leading to customers being able to tailor various visual<br>components and to integrate those components into ad hoc environments, as well as to<br>access them in single or cross domain mode. Improved functionality of system and relations<br>with clients.</li>
+</ol>
+<p><strong>An Ajax Based Interactive Viewing Framework</strong></p>
+<ol>
+<li>Designed, prototyped, and implemented the framework for this project which allowed user<br>exploiting reports and individual visual components inside report.</li>
+<li>The framework consisted of a JavaScript runtime in browser client and a Java based middle<br>tier in server side which handled the incoming Simple Object Access Protocol (SOAP)<br>requests, updated report design schema, and loaded report engine to generated report pages.</li>
+<li><a target="_blank" rel="noopener" href="http://www.slideshare.net/birtyguy/actuate-birt-interactive-viewer">link</a></li>
+</ol>
+<h2 id="Personal-Project"><a href="#Personal-Project" class="headerlink" title="Personal Project"></a>Personal Project</h2><p>1.<a target="_blank" rel="noopener" href="https://github.com/cbweixin/webviewer/algorithm-practice">algorithm practice</a><br>2.<a target="_blank" rel="noopener" href="https://github.com/cbweixin/compiler">compiler</a><br>3.<a target="_blank" rel="noopener" href="https://github.com/cbweixin/functional_programming">functional programming</a><br>4.<a target="_blank" rel="noopener" href="https://github.com/cbweixin/little-airwar">littler airwar</a><br>5.<a target="_blank" rel="noopener" href="https://github.com/cbweixin/webviewer-remote-console">webviewer remote debug console</a></p>
+<h2 id="Proficiency"><a href="#Proficiency" class="headerlink" title="Proficiency"></a>Proficiency</h2><p>Java,J2EE,spring core,spring boot,AWS,cloudformation,cloudwatch,EC2,Route53,Aspect J,hystrix,storm,activeMQ,zookeeper,redis,mysql,jenkins pipeline,jenkins dsl,groovy,chef,nginx,JavaScript,C/C++,Objective C,Python,Shell,ios,android,node.js,Tomcat,jboss, webloigc, websphere, jetty,AJAX,CSS,REST, SOAP, XML, JSON,Sencha,jQuery</p>
+<h2 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h2><p>Mathematics, master of science<br>Jan 2005 - June 2007<br>Goergia State University</p>
+<h2 id="Certification"><a href="#Certification" class="headerlink" title="Certification"></a>Certification</h2><p>1.Sun Certified Java Programmer(SCJP)<br>2.Sun Certified Web Component Developer(SCWCP)<br>3.Sun Certified Business Component Developer(SCBCD)</p>
+</div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="About"><img class="nofancybox" src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/username" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm-and-data-structure/">algorithm and data structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/big-data/">big data</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/distributed/">distributed</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/ssh/" style="font-size: 15px;">ssh</a> <a href="/tags/leetcode/" style="font-size: 15px;">leetcode</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/networking/" style="font-size: 15px;">networking</a> <a href="/tags/c-c/" style="font-size: 15px;">c/c++</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/sql/" style="font-size: 15px;">sql</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/c/" style="font-size: 15px;">c++</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/scala/" style="font-size: 15px;">scala</a> <a href="/tags/es/" style="font-size: 15px;">es</a> <a href="/tags/system-design/" style="font-size: 15px;">system design</a> <a href="/tags/palindrom/" style="font-size: 15px;">palindrom</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/binary-search/" style="font-size: 15px;">binary search</a> <a href="/tags/zookeeper/" style="font-size: 15px;">zookeeper</a> <a href="/tags/asm/" style="font-size: 15px;">asm</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/08/06/crackme-9-keygen/">crackme-9-keygen</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/12/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/12/sl4j-log-string-interpolation-vs-concaternation/">sl4j-log-string-interpolation-vs-concaternation</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/05/13/big-endian-vs-little-endian/">big-endian-vs-little-endian</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/05/06/multiple-solutions-for-a-sql-problems/">multiple-solutions-for-a-sql-problems</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/maximum-of-minimum-values-in-all-subarrays/">maximum-of-minimum-values-in-all-subarrays</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/09/design-most-recently-used-queue/">design-most-recently-used-queue</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/time-wait/">socket connection time-wait</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/06/channel-related-issues/">channel-related-issues</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/26/leetcode-1428-leftmost-col-with-at-least-a-one/">leetcode-1428-leftmost-col-with-at-least-a-one</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Wei Xin.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
